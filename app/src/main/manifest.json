@@ -1,0 +1,32 @@
+{
+  "name": "Gyan Sangam EduTech",
+  "short_name": "Gyan Sangam",
+  "id": "in.gyansangam.app",
+  "description": "Gyan Sangam EduTech - डिजिटल अध्ययन, ई-लाइब्रेरी एवं प्रतियोगी परीक्षा तैयारी",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#076EFF",
+  "icons": [
+    {
+      "src": "https://www.gstatic.com/images/branding/productlogos/ai_studio/v1/web-512dp/logo_ai_studio_color_1x_web_512dp.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Mukta', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 50% 0%, #131d33 0%, #0a0e1a 50%, #060911 100%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    min-height: 100vh;
+  }
+}
+
+.font-royal-serif {
+  font-family: 'Cinzel', serif;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+/* Custom scrollbar for deep obsidian navy slate theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Official Branded Print Styles & Watermark Engine */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+
+  .print-watermark-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.08 !important;
+    pointer-events: none;
+    z-index: 9999;
+    width: 80%;
+  }
+
+  .print-watermark-logo {
+    width: 260px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: grayscale(100%);
+  }
+
+  .print-watermark-text {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .print-header-bar {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #059669 !important;
+  }
+
+  .print-footer-bar {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    margin-top: 24px;
+    border-top: 1px solid #cbd5e1 !important;
+    font-size: 11px !important;
+    color: #64748b !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.2s infinite ease-in-out;
+}
+
