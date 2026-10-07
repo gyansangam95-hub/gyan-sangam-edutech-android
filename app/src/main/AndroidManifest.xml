@@ -10,8 +10,8 @@
         android:roundIcon="@drawable/ic_launcher"
         android:label="Gyan Sangam EduTech"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
-        android:usesCleartextTraffic="false">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true">
         
         <activity
             android:name=".MainActivity"
