@@ -7,21 +7,19 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private WebView myWebView;
+    private WebView webView;
     private ValueCallback<Uri[]> uploadMessage;
     public static final int REQUEST_SELECT_FILE = 100;
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -30,20 +28,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myWebView = new WebView(this);
-        setContentView(myWebView);
+        webView = new WebView(this);
+        setContentView(webView);
 
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setAllowContentAccess(true);
-        webSettings.setDatabaseEnabled(true);
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        settings.setAllowFileAccess(true);
+        settings.setAllowContentAccess(true);
 
-        myWebView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient());
 
-        // फ़ाइल/गैलरी पिकर हैंडलर
-        myWebView.setWebChromeClient(new WebChromeClient() {
+        // गैलरी और फ़ाइल पिकर हैंडलर
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
                 if (uploadMessage != null) {
@@ -52,10 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 uploadMessage = filePathCallback;
 
-                // स्टोरेज परमिशन चेक करें
                 checkAndRequestPermissions();
 
-                // सीधा गैलरी और फ़ाइल सिलेक्टर इंटेंट
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 galleryIntent.setType("*/*");
@@ -79,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         checkAndRequestPermissions();
-        myWebView.loadUrl("file:///android_asset/index.html");
+
+        // आपका दिया गया लाइव लिंक
+        webView.loadUrl("https://gyan-sangam-edutech.ai.studio");
     }
 
     private void checkAndRequestPermissions() {
@@ -118,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (myWebView.canGoBack()) {
-            myWebView.goBack();
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
         } else {
             super.onBackPressed();
         }
